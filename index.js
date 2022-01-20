@@ -25,14 +25,12 @@ app.get('/holidays', (req, res )=>{
 
 
 app.get('/is-today-holiday', (req,res)=>{
-    {
-        holidays.forEach((holiday)=> {
-            if(newToday == holiday.date){
-                res.send(`Sim, hoje é feriado ${holiday.name}`)
-            }else{
-                res.send('Não, hoje não é feriado')
-            }
-        })
+    const todayHoliday = holidays.find(holiday=>holiday.date === newToday)
+
+    if(todayHoliday){
+        res.send(`é feriado de ${todayHoliday.name}`)
+    }else{
+        res.send('nao é')
     }
 
 })
